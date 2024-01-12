@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 15px; /* Adjust the padding as needed */
+  margin: 0;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #343a40; /* Change to the desired lighter color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+/* Optional: Add a border to make them look more like squares */
+.nav-link {
+  border: 1px solid #fff;
+}
