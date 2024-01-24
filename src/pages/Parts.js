@@ -1,3 +1,4 @@
+// Parts.js
 import React, { useState, useEffect } from 'react';
 import { Table, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
@@ -71,6 +72,24 @@ const Parts = () => {
     }
   };
 
+  const handleUpdateOrder = async (partId, orderId, customerId) => {
+    try {
+      setLoading(true);
+      await axios.patch('http://localhost:5184/api/Parts/updateorder', {
+        partId,
+        orderId,
+        customerId,
+      });
+
+      // After updating, refetch the data to update the UI
+      fetchParts();
+    } catch (error) {
+      console.error('Error updating order for part:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchParts();
   }, []);
@@ -116,6 +135,7 @@ const Parts = () => {
             <th>Part Price</th>
             <th>Order ID</th>
             <th>Action</th>
+            <th className="text-center">Update Order</th>
           </tr>
         </thead>
         <tbody>
@@ -134,6 +154,26 @@ const Parts = () => {
                 >
                   Delete
                 </Button>
+              </td>
+              <td className="text-center">
+                {part.orderID ? (
+                  <span>Order ID: {part.orderID}</span>
+                ) : (
+                  <div>
+                    <Form.Control
+                      type="number"
+                      placeholder="Order ID"
+                      onChange={(e) => handleUpdateOrder(part.partId, e.target.value, /* provide customerId here */)}
+                    />
+                    <Button
+                      variant="info"
+                      onClick={() => handleUpdateOrder(part.partId, part.orderID, /* provide customerId here */)}
+                      disabled={loading}
+                    >
+                      Update Order
+                    </Button>
+                  </div>
+                )}
               </td>
             </tr>
           ))}

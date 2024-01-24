@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Customers from './pages/Customers';
 import Orders from './pages/Orders';
 import Parts from './pages/Parts';
+import ServiceHistory from './pages/ServiceHistory';
 import { NavbarBrand } from 'react-bootstrap';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <NavLink className="nav-link" to="/Customers" >Customers</NavLink>
             <NavLink className="nav-link" to="/Orders">Orders</NavLink>
             <NavLink className="nav-link" to="/Parts">Parts</NavLink>
+            <NavLink className="nav-link" to="/ServiceHistory">Service History</NavLink>
           </Nav>
         </Container>
       </Navbar>
@@ -29,6 +31,7 @@ function App() {
         <Route path='/Customers' element={<Customers />} />
         <Route path='/Orders' element={<Orders />}/>
         <Route path='/Parts' element={<Parts />}/>
+        <Route path='/ServiceHistory' element={<ServiceHistory />}/>
       </Routes>
       </>
     </div>
